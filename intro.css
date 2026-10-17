@@ -1,0 +1,105 @@
+.intro {
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.4rem, 8vw, 5.5rem);
+    line-height: 1.1;
+    color: var(--dark);
+}
+
+.word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.ch {
+    display: inline-block;
+    animation: letterIn 0.8s var(--ease) backwards;
+    animation-delay: calc(var(--i) * 45ms + 200ms);
+    transition: transform 0.25s var(--ease), color 0.25s;
+}
+
+.ch:hover {
+    transform: translateY(-8px) rotate(-6deg);
+    color: #fff;
+}
+
+@keyframes letterIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) rotate(10deg) scale(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0) scale(1);
+    }
+}
+
+p {
+    margin: 18px 0 38px 0;
+    font-size: clamp(1.3rem, 4vw, 2.4rem);
+    color: var(--dark);
+    animation: fadeUp 1s var(--ease) 1.7s backwards;
+}
+
+.btn {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    padding: 16px 40px;
+    border-radius: 999px;
+    animation: fadeUp 1s var(--ease) 2.1s backwards, pulse 2.6s ease-in-out 3.2s infinite;
+}
+
+.sipka {
+    display: inline-block;
+    transition: transform 0.25s var(--ease);
+}
+
+.btn:hover .sipka {
+    transform: translateX(6px);
+}
+
+small {
+    margin-top: 18px;
+    color: rgba(16, 34, 43, 0.7);
+    animation: fadeUp 1s var(--ease) 2.6s backwards;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 6px 16px rgba(31, 41, 55, 0.3), 0 0 0 0 rgba(31, 41, 55, 0.45);
+    }
+    50% {
+        box-shadow: 0 6px 16px rgba(31, 41, 55, 0.3), 0 0 0 18px rgba(31, 41, 55, 0);
+    }
+}
+
+.logo-intro {
+    margin-bottom: 26px;
+    border-radius: 26px;
+    box-shadow: 0 16px 40px rgba(16, 34, 43, 0.3);
+    animation: logoIn 1s var(--ease) backwards, plove 5s ease-in-out 1.2s infinite;
+}
+
+@keyframes logoIn {
+    from {
+        opacity: 0;
+        transform: scale(0.3) rotate(-30deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes plove {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-8px) rotate(3deg); }
+}

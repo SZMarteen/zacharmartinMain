@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2A7B9B">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <title>Hádej číslo</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="GTN.css">
+</head>
+<body>
+    <a class="back" href="minigms.html">← Minihry</a>
+
+    <main class="game-wrap">
+        <section id="pravidla" class="card" data-reveal>
+            <h2>Pravidla</h2>
+            <p>Počítač si vymyslel číslo od 1 do 100. Napiš tip a zjistíš, jestli má být číslo větší (↑), nebo menší (↓). Hádej, dokud ho neuhodneš.</p>
+        </section>
+
+        <section id="vysledek" class="card" data-reveal style="--d: 0.1s">
+            <p id="cislo">?</p>
+            <p id="sipka"></p>
+            <p id="zprava">Napiš svůj první tip.</p>
+            <div id="rozsah"><div id="rozsahFill"></div></div>
+            <p id="rozsahText">Možné rozmezí: 1 – 100</p>
+        </section>
+
+        <section id="vstup" class="card" data-reveal style="--d: 0.2s">
+            <div class="row">
+                <input type="number" id="tip" placeholder="Tvůj tip" min="1" max="100" inputmode="numeric" autocomplete="off">
+                <button id="tlacitko" onclick="hadej()">Hádej</button>
+            </div>
+            <p>Pokusy: <span id="pokusy">0</span></p>
+            <div id="historie"></div>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="GTN.js"></script>
+</body>
+</html>

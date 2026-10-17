@@ -1,0 +1,69 @@
+#cislo {
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+#cas {
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+}
+
+#cas.spech {
+    color: #c0392b;
+    animation: tep 0.5s ease-in-out infinite;
+}
+
+@keyframes tep {
+    50% { transform: scale(1.12); }
+}
+
+/* Časový proužek */
+#bar {
+    height: 12px;
+    margin: 14px 0 6px 0;
+    background: rgba(31, 41, 55, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#barFill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
+    border-radius: 12px;
+    transition: width 0.12s linear;
+}
+
+#barFill.konec {
+    background: #c0392b;
+}
+
+#zprava {
+    margin-top: 8px;
+}
+
+#vstup > p {
+    margin-top: 14px;
+}
+
+/* Velké klikací tlačítko */
+#tlacitko {
+    font-size: 1.6rem;
+    padding: 18px 54px;
+    border-radius: 18px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#tlacitko:active {
+    transform: scale(0.9);
+}
+
+#nejlepsi {
+    display: inline-block;
+    font-weight: 800;
+}

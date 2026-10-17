@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2A7B9B">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <title>Klikací výzva</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="counter.css">
+</head>
+<body>
+    <a class="back" href="minigms.html">← Minihry</a>
+
+    <main class="game-wrap">
+        <section id="pravidla" class="card" data-reveal>
+            <h2>Pravidla</h2>
+            <p>Máš 10 sekund na to, abys naklikal co nejvíc kliknutí. Čas se spustí prvním kliknutím na tlačítko. Po skončení uvidíš výsledek a můžeš to zkusit znovu.</p>
+        </section>
+
+        <section id="vysledek" class="card" data-reveal style="--d: 0.1s">
+            <p id="cislo">0</p>
+            <p id="cas">10.0 s</p>
+            <div id="bar"><div id="barFill"></div></div>
+            <p id="zprava">Klikni na tlačítko a hra začne.</p>
+        </section>
+
+        <section id="vstup" class="card" data-reveal style="--d: 0.2s">
+            <button id="tlacitko" onclick="klik()">Klikej!</button>
+            <p>Nejlepší výsledek: <span id="nejlepsi">0</span></p>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="counter.js"></script>
+</body>
+</html>

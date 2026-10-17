@@ -1,0 +1,358 @@
+/* ===== Společný styl pro celý web ===== */
+
+:root {
+    --c1: #2A7B9B;
+    --c2: #57C785;
+    --c3: #EDDD53;
+    --ink: #10222b;
+    --dark: #1f2937;
+    --glass: rgba(255, 255, 255, 0.55);
+    --glass-edge: rgba(255, 255, 255, 0.75);
+    --radius: 20px;
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    line-height: 1.55;
+    color: var(--ink);
+    background: linear-gradient(120deg, #2A7B9B 0%, #57C785 35%, #EDDD53 65%, #57C785 85%, #2A7B9B 100%);
+    background-size: 300% 300%;
+    animation: bgShift 20s ease-in-out infinite, pageIn 0.6s ease backwards;
+}
+
+body.leaving {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* ===== Plovoucí barevné skvrny na pozadí ===== */
+
+.blobs {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+}
+
+.b1 {
+    width: 420px;
+    height: 420px;
+    background: #EDDD53;
+    top: -120px;
+    left: -100px;
+    animation: float1 16s ease-in-out infinite;
+}
+
+.b2 {
+    width: 480px;
+    height: 480px;
+    background: #2A7B9B;
+    bottom: -160px;
+    right: -120px;
+    animation: float2 20s ease-in-out infinite;
+}
+
+.b3 {
+    width: 320px;
+    height: 320px;
+    background: #57C785;
+    top: 40%;
+    left: 55%;
+    animation: float3 18s ease-in-out infinite;
+}
+
+/* ===== Skleněná karta ===== */
+
+.card {
+    position: relative;
+    overflow: hidden;
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-edge);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(16, 34, 43, 0.15);
+    padding: 22px 30px;
+    transition: box-shadow 0.35s var(--ease);
+}
+
+.card:hover {
+    box-shadow: 0 18px 44px rgba(16, 34, 43, 0.24);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.5), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Objevení při scrollování ===== */
+
+.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+    transition: opacity 0.8s ease, transform 0.8s var(--ease);
+    transition-delay: var(--d, 0s);
+}
+
+.js [data-reveal].in {
+    opacity: 1;
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+
+.js [data-reveal].in.done {
+    transition: transform 0.18s ease-out, box-shadow 0.35s var(--ease);
+    transition-delay: 0s;
+}
+
+/* ===== Tlačítka ===== */
+
+button,
+.btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #1f2937, #374151);
+    border: 0;
+    border-radius: 14px;
+    padding: 12px 24px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(31, 41, 55, 0.3);
+    transition: transform 0.2s var(--ease), box-shadow 0.2s, filter 0.2s;
+    touch-action: manipulation;
+}
+
+button:hover,
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(31, 41, 55, 0.35);
+    filter: brightness(1.12);
+}
+
+button:active,
+.btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
+
+button.ghost {
+    background: transparent;
+    color: var(--dark);
+    box-shadow: none;
+    border: 2px solid rgba(31, 41, 55, 0.35);
+    padding: 6px 14px;
+    font-size: 0.85rem;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+input {
+    font: inherit;
+    padding: 11px 16px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.85);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: var(--c1);
+    box-shadow: 0 0 0 4px rgba(42, 123, 155, 0.2);
+}
+
+/* ===== Odkaz zpět ===== */
+
+.back {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 50;
+    padding: 8px 16px;
+    font-weight: 600;
+    color: var(--dark);
+    text-decoration: none;
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-edge);
+    border-radius: 999px;
+    transition: transform 0.25s var(--ease), background 0.25s;
+}
+
+.back:hover {
+    transform: translateX(-4px);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== Rozložení herních stránek ===== */
+
+.game-wrap {
+    max-width: 520px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 76px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+}
+
+.game-wrap h2 {
+    margin: 0 0 8px 0;
+}
+
+.game-wrap p {
+    margin: 0;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===== Konfety ===== */
+
+#confetti {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* ===== Pomocné animace ===== */
+
+.pop {
+    animation: pop 0.4s var(--ease);
+}
+
+.shake {
+    animation: shake 0.45s ease;
+}
+
+.bounce {
+    animation: bounce 0.6s var(--ease);
+}
+
+@keyframes bgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pageIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(120px, 80px) scale(1.15); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-140px, -90px) scale(1.1); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-80px, 110px) scale(0.9); }
+}
+
+@keyframes ripple {
+    to { transform: scale(4); opacity: 0; }
+}
+
+@keyframes pop {
+    0% { transform: scale(0.6); opacity: 0.4; }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(9px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(4px); }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(-18px); opacity: 0; }
+    60% { transform: translateY(5px); opacity: 1; }
+    100% { transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(26px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Lidé, kteří nechtějí animace, je nemusí mít */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

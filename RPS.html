@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2A7B9B">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <title>Kámen, nůžky, papír</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="RPS.css">
+</head>
+<body>
+    <a class="back" href="minigms.html">← Minihry</a>
+
+    <main class="game-wrap">
+        <section id="pravidla" class="card" data-reveal>
+            <h2>Pravidla</h2>
+            <p>Vyber kámen, nůžky nebo papír. Počítač si vybere také. Kámen rozbije nůžky, nůžky přestřihnou papír a papír zakryje kámen. Když vyberete stejně, je to remíza.</p>
+        </section>
+
+        <section id="vysledek" class="card" data-reveal style="--d: 0.1s">
+            <div id="volby">
+                <div id="tvujBox">
+                    <p class="popisek">Ty</p>
+                    <p class="obrazek" id="tvuj">❔</p>
+                </div>
+                <div class="vs">VS</div>
+                <div id="pocitacBox">
+                    <p class="popisek">Počítač</p>
+                    <p class="obrazek" id="pocitac">❔</p>
+                </div>
+            </div>
+            <p id="zprava">Vyber si, čím budeš hrát.</p>
+        </section>
+
+        <section id="vstup" class="card" data-reveal style="--d: 0.2s">
+            <div class="row">
+                <button onclick="hraj('kamen')">✊ Kámen</button>
+                <button onclick="hraj('nuzky')">✌️ Nůžky</button>
+                <button onclick="hraj('papir')">✋ Papír</button>
+            </div>
+            <p class="skore">Skóre: Ty <span id="skoreTy">0</span> : <span id="skorePc">0</span> BOT (remízy: <span id="skoreRemiza">0</span>)</p>
+            <button class="ghost" onclick="resetSkore()">Resetovat skóre</button>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="RPS.js"></script>
+</body>
+</html>
